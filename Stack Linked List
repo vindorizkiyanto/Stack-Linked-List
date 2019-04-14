@@ -1,0 +1,88 @@
+#include <iostream>
+using namespace std;
+
+struct isi {
+	int data;
+	isi *skip;
+};
+isi * head = NULL;
+bool isEmpty () 
+	{
+		return (head==NULL);
+	}
+
+	void push(int file)
+	{
+		isi *baru=new isi;
+		baru->data=file;
+		baru->skip=head;
+		head=baru;
+	}
+
+	void del() 
+	{
+	if (head == '\0') {
+		cout<<"Stack kosong!\n";
+	}else {
+		cout<<endl<<"Data "<<head->data<<" yang dihapus.\n";
+		head = head->skip;
+	}
+}
+
+		
+	void cetakdata () 
+	{
+		isi *baru=head;
+		if (!isEmpty()){
+			cout<<"Stack saat ini:\n";
+			do {
+				cout<<baru->data<<endl;
+				baru=baru->skip;
+			}
+			while (baru!=NULL);
+		}else {
+			cout<<"Stack Kosong"<<endl;
+		}
+};
+
+int main (){
+	int menu, n;
+	do{
+	cout<<" Pilih Menu "<<endl<<endl;
+	cout<<" 1. Tambah isi "<<endl;
+	cout<<" 2. Hapus isi Stack "<<endl;
+	cout<<" 3. Cetak Stack "<<endl;
+	cout<<" 4. Exit "<<endl<<endl;
+	cout<<" Pilihan : ";
+	cin>>menu;
+	
+		switch(menu){
+			case 1 :
+				cout<<" Masukkan Angka = ";
+				cin>>n;
+				push(n);
+				cout<<endl;
+				break;
+			
+			case 2 :
+				del();
+				system("PAUSE");
+				break;
+			
+			case 3 :
+				cetakdata();
+				system("PAUSE");
+				break;
+				
+			case 4 :
+				exit (0);
+			
+			default :
+				cout<<" Pilihan yang anda masukkan tidak ada  ";
+				break;
+		}
+		system("cls");
+	}while (menu!=5);
+			return 0;	
+	
+}
